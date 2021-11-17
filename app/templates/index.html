@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA API</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main>
+        <h1>Utilizando la API de la NASA</h1>
+        <h2>EPIC Daily “Blue Marble” API<h2>
+        <p>API Version 2.0</p>
+        <hr>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Vesión</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for element in data %}
+                <tr>
+                    <td scope="row">{{element+1}}</td>
+                    <td>{{ data[element]['caption'] }}</td>
+                    <td><img src="{{ data[element]['image_url'] }}" alt="{{ data[element]['image_name'] }}"></td>
+                    <td>{{ data[element]['date'] }}</td>
+                    <td>{{ data[element]['version'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <address>
+            About API: <a href="https://epic.gsfc.nasa.gov/about/api" target="_blank" rel="noopener noreferrer">https://epic.gsfc.nasa.gov/about/api</a>
+        </address>
+    </footer>
+</body>
+</html>
